@@ -31,3 +31,15 @@ At the top of the image, we can see:
 When executing the code, the `easyocr` model successfully scans the document and detects the bounding box corresponding to the sequence "Jib". The program then accurately draws an orange rectangle from the top-left to the bottom-right corner of the detected text.
 
 > **Conclusion:** The generated image confirms that the orange bounding box perfectly encloses the specified text region. This demonstrates that the exercise has been completed successfully.
+
+### 2.4/ Viết chương trình để xác định và output ảnh vẽ bounding box các phòng (vẽ bounding box màu tím bao quanh các phòng/căn hộ)
+![Exercise 2.4 Result](output_file/2-4-result_rooms.jpg)
+![Exercise 2.4 Terminal](terminal_image/2-4-terminal.png)
+
+**Observation:**
+The script converts the PDF to an image, detects room boundaries using contours, and uses OCR with a Regex pattern to find "m²" labels. The output image shows 6 valid rooms successfully highlighted with purple bounding boxes.
+
+> **Conclusion:** The program successfully highlights 6 rooms, but one "m²" label was missed due to OCR limitations. Overall, the exercise is completed successfully.
+>
+> **Future Work:** Improve OCR accuracy on architectural plans using better image preprocessing (like sharpening) or by training a specialized OCR model.
+
