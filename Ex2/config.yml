@@ -1,0 +1,16 @@
+colors:
+  purple: [128, 0, 128]
+  green: [0, 255, 0]
+
+drawing:
+  box_thickness: 3
+  label_font_scale: 0.4
+  label_thickness: 2
+
+room_detection:
+  min_room_area_px: 150000
+  max_room_ratio: 0.3
+
+ocr:
+  padding: 120
+  area_regex: '\d[\d\s,\.]*\s*(m2|m\^2|㎡|m²|m)'

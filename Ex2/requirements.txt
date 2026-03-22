@@ -3,3 +3,4 @@ numpy
 easyocr
 pypdf
 pdf2image
+PyYAML
