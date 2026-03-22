@@ -2,7 +2,7 @@
 
 ### 2.1/ Hãy download hình vẽ trên về máy tính của bạn và phóng to hình vẽ ít nhất 500%, xác nhận hình vẽ bằng mắt thường.
 
-![Exercise 2.1 Result](2-1-result.png)
+![Exercise 2.1 Result](output_file/2-1-result.png)
 
 **Observation:**
 At the top of the image, we can see:
@@ -15,7 +15,7 @@ At the top of the image, we can see:
 
 ### 2.2/ Dùng mắt thường hãy đếm xem trong hình vẽ có mấy nhà vệ sinh (các phòng ghi ký hiệu “WC"), mấy nhà tắm (UB - Unit Bath).
 
-![Exercise 2.2 Result](2-2-result.png)
+![Exercise 2.2 Result](output_file/2-2-result.png)
 
 **Observation:**
 - There are 5 WCs, which are highlighted in red.
@@ -26,7 +26,9 @@ At the top of the image, we can see:
 ### 2.3/ Dùng thư viện Python để đọc file PDF trên và xác định vùng có tên (title) bản vẽ (vùng có chữ Jib ở cuối bản vẽ). Viết chương trình output ra ảnh chứa bounding box highlight hình chữ nhật chứa tên bản vẽ (ảnh chứa hình chữ nhật màu da cam bao quanh hình chữ nhật chứa tên bản vẽ).
 
 ![Exercise 2.3 Result](output_file/2-3-result_ocr_page_1.png)
+
 ![Exercise 2.3 Terminal](terminal_image/2-3-terminal.png)
+
 **Observation:**
 When executing the code, the `easyocr` model successfully scans the document and detects the bounding box corresponding to the sequence "Jib". The program then accurately draws an orange rectangle from the top-left to the bottom-right corner of the detected text.
 
@@ -34,9 +36,13 @@ When executing the code, the `easyocr` model successfully scans the document and
 
 ### 2.4/ Viết chương trình để xác định và output ảnh vẽ bounding box các phòng (vẽ bounding box màu tím bao quanh các phòng/căn hộ)
 ![Exercise 2.4 Result](output_file/2-4-result_rooms.jpg)
+
 ![Exercise 2.4 Terminal](terminal_image/2-4-terminal.png)
+
 **Pipeline for detecting rooms:**
+
 ![2-4-pipeline](input_file/pipeline_detect_room.png)
+
 **Observation:**
 The script converts the PDF to an image, detects room boundaries using contours, and uses OCR with a Regex pattern to find "m²" labels. The output image shows 6 valid rooms successfully highlighted with purple bounding boxes.
 
@@ -46,9 +52,13 @@ The script converts the PDF to an image, detects room boundaries using contours,
 
 ### 2.5/ Viết chương trình để output ra ảnh vẽ highlight (tô màu xanh lá cây) các đường đậm nối ống nước thải từ nhà vệ sinh (WC) ra đường ống nước thải trung tâm (đường ống như hình dưới đây).
 ![Exercise 2.5 Result](output_file/2-5-result_pipes.jpg)
+
 ![Exercise 2.5 Terminal](terminal_image/2-5-terminal.png)
+
 **Pipeline for detecting waste pipes:**
+
 ![2-5-pipeline](input_file/pipeline_detect_pipe.png)
+
 **Observation:**
 The program uses **8-angle rotational OCR** to find "75" pipe labels at any angle. For each WC, it highlights only the single closest pipe segment to the label "75".
 > **Conclusion:**
