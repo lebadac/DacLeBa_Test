@@ -45,5 +45,5 @@ You can now run any of the exercise scripts. Make sure you are still in the `Ex2
 
 **Run Exercise 2-3:**
 ```bash
-python ex2-3.py
+python ex2_3.py
 ```
