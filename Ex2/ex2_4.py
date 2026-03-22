@@ -151,11 +151,12 @@ def draw_boxes(result: np.ndarray, rooms: list, labels=None):
 
 def detect_rooms(image_input, output_path: str, use_ocr: bool = True):
     """
-    Complete pipeline:
-      1. Read image (or use numpy array) & preprocess
-      2. Detect rooms using contours
-      3. (Optional) Run OCR from ex2_3 to find m² labels
-      4. Draw bounding box & save output image
+    Complete room detection pipeline:
+    1. Read and preprocess the floor plan image (grayscale, thresholding).
+    2. Identify candidate room boundaries using contour detection and filtering.
+    3. (Optional) Run OCR to locate area labels (e.g., "m²") within the plan.
+    4. Match "m²" labels with room contours and apply NMS.
+    5. Draw confirmed room areas with purple bounding boxes and save the output.
     """
     logging.info("=" * 55)
     logging.info(f"Output image: {output_path}")
@@ -179,7 +180,7 @@ def detect_rooms(image_input, output_path: str, use_ocr: bool = True):
     result = img.copy()
     gray, thresh, dilated = preprocess(img)
 
-    # ── Step 1: Find all valid contours in the image ──
+    # Find all valid contours in the image 
     logging.info("[1/3] Finding all contours...")
     all_contours, _ = cv2.findContours(dilated, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     valid_contours = []
@@ -192,7 +193,7 @@ def detect_rooms(image_input, output_path: str, use_ocr: bool = True):
             valid_contours.append(cnt)
     logging.info(f"Found {len(valid_contours)} valid contours")
 
-    # ── Step 2: OCR – find m² labels using function from ex2_3 ──
+    # OCR – find m² labels using function from ex2_3
     logging.info("[2/3] Detecting m² labels using OCR from ex2_3...")
     ocr_labels = []
     if use_ocr:
@@ -206,7 +207,7 @@ def detect_rooms(image_input, output_path: str, use_ocr: bool = True):
     else:
         logging.info("[SKIPPED] use_ocr parameter is False")
 
-    # ── Step 3: Keep only contours that contain at least one m² label center ──
+    # Keep only contours that contain at least one m² label center 
     logging.info("[3/3] Filtering contours containing m² labels...")
     all_rooms = []
     for cnt in valid_contours:
@@ -221,7 +222,7 @@ def detect_rooms(image_input, output_path: str, use_ocr: bool = True):
     all_rooms = non_max_suppression(all_rooms, iou_threshold=0.35)
     logging.info(f"Total room bounding boxes with m²: {len(all_rooms)}")
 
-    # Step 4: Draw & Save
+    # Draw & Save
     result = draw_boxes(result, all_rooms, ocr_labels)
     cv2.imwrite(output_path, result)
     logging.info(f"Successfully saved result image: {output_path}")
