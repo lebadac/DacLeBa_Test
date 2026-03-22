@@ -44,3 +44,22 @@ The script converts the PDF to an image, detects room boundaries using contours,
 >
 > **Future Work:** Improve OCR accuracy on architectural plans using better image preprocessing (like sharpening) or by training a specialized OCR model.
 
+### 2.5/ Viết chương trình để output ra ảnh vẽ highlight (tô màu xanh lá cây) các đường đậm nối ống nước thải từ nhà vệ sinh (WC) ra đường ống nước thải trung tâm (đường ống như hình dưới đây).
+![Exercise 2.5 Result](output_file/2-5-result_pipes.jpg)
+![Exercise 2.5 Terminal](terminal_image/2-5-terminal.png)
+**Pipeline for detecting waste pipes:**
+![2-5-pipeline](input_file/pipeline_detect_pipe.png)
+**Observation:**
+The program uses **8-angle rotational OCR** to find "75" pipe labels at any angle. For each WC, it highlights only the single closest pipe segment to the label "75".
+> **Conclusion:**
+> The script successfully highlighted 2 pipes for detected WCs. While OCR sometimes misses text for word "WC", the multi-angle search and proximity matching are very effective for this task.
+>
+> **Future Work:**
+>
+> 1. Improve OCR accuracy with better image sharpening.
+> 2. Use Deep Learning to detect WCs and pipes directly (I try to use yolov8 but it found the object when applying on this image).
+> 3. Use Gemini Vision to analyze the scenarios. (I try to use gemini-2.5-flash, but not good for relocating coordinates)
+
+
+---
+*Thank you. Have a nice day!*

@@ -14,3 +14,10 @@ room_detection:
 ocr:
   padding: 120
   area_regex: '\d[\d\s,\.]*\s*(m2|m\^2|㎡|m²|m)'
+
+pipe_detection:
+  wc_roi_padding: 600
+  pipe_kernel_size: 4
+  min_pipe_area: 70
+  wc_regex: 'wc'
+  target_pipe_label: '75'
